@@ -55,8 +55,22 @@
 		<!-- break / half marks -->
 		{#each match.breakMarks as bm (bm)}
 			{@const isHT = bm === 45}
-			<line x1={xScale(bm)} y1={padT - 6} x2={xScale(bm)} y2={VB_H - padB + 6} class="brkline" />
-			<text x={xScale(bm)} y={VB_H - 8} class="brklabel" text-anchor="middle">
+			{#if !isHT}
+				<!-- water-break shading band -->
+				<rect
+					x={xScale(bm - 1)}
+					y={padT - 6}
+					width={xScale(bm + 1) - xScale(bm - 1)}
+					height={VB_H - padB - padT + 12}
+					class="waterband"
+				/>
+			{/if}
+			<line
+				x1={xScale(bm)} y1={padT - 6}
+				x2={xScale(bm)} y2={VB_H - padB + 6}
+				class={isHT ? 'brkline ht' : 'brkline water'}
+			/>
+			<text x={xScale(bm)} y={VB_H - 8} class="brklabel {isHT ? 'ht' : 'water'}" text-anchor="middle">
 				{isHT ? 'HT' : `${bm}'`}
 			</text>
 		{/each}
@@ -73,18 +87,21 @@
 			/>
 		{/each}
 
-		<!-- axis ticks -->
-		{#each axisTicks as t (t)}
+		<!-- axis ticks removed for mobile clarity -->
+		<!-- {#each axisTicks as t (t)}
 			<text x={xScale(t)} y={VB_H - 20} class="tick" text-anchor="middle">{t}'</text>
-		{/each}
+		{/each} -->
 
-		<!-- goal markers -->
+		<!-- goal markers — home at top, away at bottom -->
 		{#each goals as g, i (i)}
+			{@const isHome = g.team === 'home'}
+			{@const cy = isHome ? padT - 12 : VB_H - padB + 12}
+			{@const ty = isHome ? padT - 9 : VB_H - padB + 15}
 			<g class="goal {g.team}">
-				<title>{g.player} — {g.minute}' ({g.team === 'home' ? match.home.name : match.away.name})</title>
+				<title>{g.player} — {g.minute}' ({isHome ? match.home.name : match.away.name})</title>
 				<line x1={g.x} y1={padT - 10} x2={g.x} y2={VB_H - padB} class="goalline" />
-				<circle cx={g.x} cy={padT - 12} r="7" class="goaldot" />
-				<text x={g.x} y={padT - 9} class="goalmin" text-anchor="middle">{g.minute}</text>
+				<circle cx={g.x} cy={cy} r="7" class="goaldot" />
+				<text x={g.x} y={ty} class="goalmin" text-anchor="middle">{g.minute}</text>
 			</g>
 		{/each}
 	</svg>
@@ -127,13 +144,8 @@
 		background: var(--away);
 	}
 	.swatch.brk {
-		background: repeating-linear-gradient(
-			0deg,
-			var(--accent),
-			var(--accent) 2px,
-			transparent 2px,
-			transparent 4px
-		);
+		background: #4dd8e0;
+		opacity: 0.8;
 	}
 	.swatch.goal {
 		background: var(--goal);
@@ -142,6 +154,7 @@
 
 	svg {
 		width: 100%;
+		max-width: 100%;
 		height: clamp(280px, 46vh, 460px);
 		display: block;
 		background:
@@ -150,6 +163,20 @@
 		border: 1px solid var(--border);
 		border-radius: var(--radius);
 		overflow: visible;
+	}
+
+	@media (max-width: 640px) {
+		svg {
+			aspect-ratio: 1000 / 550;
+			height: auto;
+		}
+		/* SVG units scale at ~0.578x on mobile — bump to render ≥14px on screen */
+		.brklabel {
+			font-size: 25px;
+		}
+		.goalmin {
+			font-size: 20px;
+		}
 	}
 
 	.baseline {
@@ -167,18 +194,35 @@
 		fill: var(--away);
 	}
 
+	.waterband {
+		fill: #4dd8e0;
+		opacity: 0.12;
+	}
 	.brkline {
-		stroke: var(--accent);
 		stroke-width: 1.4;
 		stroke-dasharray: 3 4;
 		opacity: 0.55;
 	}
+	.brkline.ht {
+		stroke: var(--accent);
+	}
+	.brkline.water {
+		stroke: #4dd8e0;
+		stroke-width: 2;
+		stroke-dasharray: none;
+		opacity: 0.75;
+	}
 	.brklabel {
-		fill: var(--accent);
 		font-size: 12px;
 		font-weight: 600;
 		font-family: var(--font-mono);
 		opacity: 0.85;
+	}
+	.brklabel.ht {
+		fill: var(--accent);
+	}
+	.brklabel.water {
+		fill: #4dd8e0;
 	}
 
 	.tick {

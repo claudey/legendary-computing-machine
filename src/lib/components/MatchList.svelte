@@ -13,6 +13,19 @@
 
 	let query = $state('');
 
+	const CODES: Record<string, string> = {
+		'Mexico': 'MEX', 'South Africa': 'RSA', 'South Korea': 'KOR', 'Czechia': 'CZE',
+		'Canada': 'CAN', 'Bosnia and Herzegovina': 'BIH', 'Qatar': 'QAT', 'Switzerland': 'SUI',
+		'Brazil': 'BRA', 'Morocco': 'MAR', 'Haiti': 'HAI', 'Scotland': 'SCO',
+		'USA': 'USA', 'Paraguay': 'PAR', 'Australia': 'AUS', 'Turkiye': 'TUR',
+		'Germany': 'GER', 'Curaçao': 'CUR', 'Ivory Coast': 'CIV', 'Ecuador': 'ECU',
+		'Netherlands': 'NED', 'Japan': 'JPN', 'Sweden': 'SWE', 'Tunisia': 'TUN',
+		'Belgium': 'BEL', 'Egypt': 'EGY', 'Spain': 'ESP', 'Cape Verde': 'CPV',
+		'Saudi Arabia': 'KSA', 'Uruguay': 'URU'
+	};
+
+	const code = (name: string) => CODES[name] ?? name.slice(0, 3).toUpperCase();
+
 	const filtered = $derived(
 		matches.filter((m) => {
 			const q = query.trim().toLowerCase();
@@ -56,18 +69,23 @@
 					onclick={() => onselect(m.id)}
 					style="--home:{m.home.color}; --away:{m.away.color};"
 				>
-					<div class="meta">
-						<span class="chip">{m.group ?? '—'}</span>
-						<span class="date mono">{fmtDate(m.kickoffUTC)}</span>
+					<!-- desktop layout -->
+					<div class="full">
+						<div class="meta">
+							<span class="temp mono">{m.weather.temperature}°C</span>
+							<span class="date mono">{fmtDate(m.kickoffUTC)}</span>
+						</div>
+						<div class="teams">
+							<span class="team"><i class="dot home"></i>{m.home.name}</span>
+							<span class="score mono">{m.score[0]}&ndash;{m.score[1]}</span>
+							<span class="team"><i class="dot away"></i>{m.away.name}</span>
+						</div>
 					</div>
-					<div class="teams">
-						<span class="team"><i class="dot home"></i>{m.home.name}</span>
-						<span class="score mono">{m.score[0]}&ndash;{m.score[1]}</span>
-						<span class="team"><i class="dot away"></i>{m.away.name}</span>
-					</div>
-					<div class="foot">
-						<span class="chip">{m.weather.temperature}°C · {m.weather.humidity}% RH</span>
-						<span class="src mono">{m.source}</span>
+					<!-- mobile compact layout -->
+					<div class="mini">
+						<span class="mini-team home"><i class="dot home"></i>{code(m.home.name)}</span>
+						<span class="mini-score mono">{m.score[0]}–{m.score[1]}</span>
+						<span class="mini-team away"><i class="dot away"></i>{code(m.away.name)}</span>
 					</div>
 				</button>
 			</li>
@@ -146,48 +164,42 @@
 		gap: 6px;
 	}
 
+	/* ── card shared ── */
 	.card {
 		width: 100%;
 		text-align: left;
 		display: flex;
 		flex-direction: column;
-		gap: 8px;
-		padding: 11px 12px;
+		gap: 7px;
+		padding: 9px 12px;
 		background: var(--surface-2);
 		border: 1px solid var(--border);
-		border-left: 3px solid transparent;
 		border-radius: var(--radius-sm);
 		color: var(--text);
 		font: inherit;
 		cursor: pointer;
-		transition:
-			background 0.12s,
-			border-color 0.12s,
-			transform 0.06s;
+		transition: background 0.12s, border-color 0.12s, transform 0.06s;
 	}
 	.card:hover {
 		background: var(--surface-3);
 		border-color: var(--border-strong);
 	}
-	.card:active {
-		transform: translateY(1px);
-	}
+	.card:active { transform: translateY(1px); }
 	.card.active {
-		background: var(--surface-3);
-		border-left-color: var(--accent);
-		border-color: var(--border-strong);
+		background: color-mix(in srgb, var(--accent) 12%, var(--surface-3));
+		border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
 	}
 
-	.meta,
-	.foot {
+	/* ── desktop full layout ── */
+	.mini { display: none; }
+
+	.meta {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 	}
-	.date {
-		font-size: 11px;
-		color: var(--text-faint);
-	}
+	.temp { font-size: 11px; color: var(--text-dim); }
+	.date { font-size: 11px; color: var(--text-faint); }
 
 	.teams {
 		display: grid;
@@ -202,22 +214,14 @@
 		font-weight: 500;
 		font-size: 13px;
 	}
-	.team:last-child {
-		justify-content: flex-end;
-		text-align: right;
-	}
+	.team:last-child { justify-content: flex-end; text-align: right; }
 	.dot {
-		width: 9px;
-		height: 9px;
+		width: 9px; height: 9px;
 		border-radius: 999px;
 		flex: none;
 	}
-	.dot.home {
-		background: var(--home);
-	}
-	.dot.away {
-		background: var(--away);
-	}
+	.dot.home { background: var(--home); }
+	.dot.away { background: var(--away); }
 	.score {
 		font-size: 14px;
 		font-weight: 600;
@@ -226,18 +230,66 @@
 		border-radius: 6px;
 	}
 
-	.src {
-		font-size: 10px;
-		color: var(--text-faint);
-		text-transform: uppercase;
-		letter-spacing: 0.06em;
-	}
-
 	.empty {
 		list-style: none;
 		padding: 24px 12px;
 		text-align: center;
 		color: var(--text-faint);
 		font-size: 13px;
+	}
+
+	/* ── mobile horizontal strip ── */
+	@media (max-width: 640px) {
+		.list {
+			height: auto;
+			width: 100%;
+			max-width: 100%;
+			overflow: hidden;
+			border-right: none;
+			border-bottom: 1px solid var(--border);
+		}
+
+		.search { padding: 10px 12px; }
+
+		.cards {
+			flex-direction: row;
+			overflow-x: auto;
+			overflow-y: visible;
+			padding: 0 12px 10px;
+			gap: 6px;
+			/* hide scrollbar but keep scroll */
+			scrollbar-width: none;
+		}
+		.cards::-webkit-scrollbar { display: none; }
+
+		li { flex: none; }
+
+		.card {
+			width: auto;
+			padding: 7px 10px;
+			gap: 4px;
+		}
+		.full { display: none; }
+		.mini {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 3px;
+			min-width: 52px;
+		}
+		.mini-team {
+			display: flex;
+			align-items: center;
+			gap: 5px;
+			font-size: 11px;
+			font-weight: 600;
+			letter-spacing: 0.04em;
+		}
+		.mini-team.away { flex-direction: row-reverse; }
+		.mini-score {
+			font-size: 12px;
+			font-weight: 700;
+			color: var(--text-dim);
+		}
 	}
 </style>

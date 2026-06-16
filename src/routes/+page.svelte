@@ -6,6 +6,18 @@
 	let selectedId = $state(allMatches[0]?.id ?? '');
 	const match = $derived(allMatches.find((m) => m.id === selectedId) ?? allMatches[0]);
 
+	function handleKey(e: KeyboardEvent) {
+		if (e.key !== 'ArrowUp' && e.key !== 'ArrowDown') return;
+		const idx = allMatches.findIndex((m) => m.id === selectedId);
+		if (e.key === 'ArrowUp' && idx > 0) {
+			e.preventDefault();
+			selectedId = allMatches[idx - 1].id;
+		} else if (e.key === 'ArrowDown' && idx < allMatches.length - 1) {
+			e.preventDefault();
+			selectedId = allMatches[idx + 1].id;
+		}
+	}
+
 	// momentum share: portion of total pressure belonging to each side
 	const share = $derived.by(() => {
 		let home = 0;
@@ -29,6 +41,8 @@
 			year: 'numeric'
 		});
 </script>
+
+<svelte:window onkeydown={handleKey} />
 
 <svelte:head>
 	<title>WC 2026 · Hydration &amp; Momentum</title>
@@ -57,8 +71,8 @@
 				</div>
 			</div>
 			<div class="sub">
-				<span class="chip">{match.league}</span>
-				<span class="chip">{fmtFull(match.kickoffUTC)}</span>
+				<span class="chip league-chip">{match.league}</span>
+				<!-- <span class="chip">{fmtFull(match.kickoffUTC)}</span> -->
 				<span class="chip" class:warm={(match.weather.temperature ?? 0) >= 28}>
 					🌡 {match.weather.temperature}°C · {match.weather.humidity}% RH · {match.weather
 						.description}
@@ -67,7 +81,7 @@
 		</header>
 
 		<section class="stats">
-			<div class="stat">
+			<div class="stat share-stat">
 				<span class="label">Momentum share</span>
 				<div class="bar2" role="img" aria-label="Momentum share">
 					<span class="seg home" style="width:{share.home}%"></span>
@@ -77,7 +91,7 @@
 					<span>{share.home}%</span><span>{share.away}%</span>
 				</div>
 			</div>
-			<div class="stat narrow">
+			<div class="stat narrow peak-stat">
 				<span class="label">Peak pressure</span>
 				<div class="peaks mono">
 					<span class="home">{peakHome}</span>
@@ -85,7 +99,7 @@
 					<span class="away">{peakAway}</span>
 				</div>
 			</div>
-			<div class="stat narrow">
+			<div class="stat narrow goals-stat">
 				<span class="label">Goals</span>
 				<div class="goalmins mono">
 					{#each match.goals as g, i (i)}
@@ -99,14 +113,42 @@
 
 		<MomentumChart {match} />
 
+		<!-- Peak pressure between chart and momentum share on mobile -->
+		<!-- <div class="stat mob-peak">
+			<span class="label">Peak pressure</span>
+			<div class="peaks mono">
+				<span class="home">{peakHome}</span>
+				<span class="vs">vs</span>
+				<span class="away">{peakAway}</span>
+			</div>
+		</div> -->
+
+		<!-- Momentum share repeated below chart on mobile -->
+		<div class="stat mob-share">
+			<span class="label">Momentum share</span>
+			<div class="bar2" role="img" aria-label="Momentum share">
+				<span class="seg home" style="width:{share.home}%"></span>
+				<span class="seg away" style="width:{share.away}%"></span>
+			</div>
+			<div class="ends mono">
+				<span>{share.home}%</span><span>{share.away}%</span>
+			</div>
+		</div>
+
 		<p class="note">
 			Vertical amber marks sit at the <strong>22'</strong>, <strong>45' (HT)</strong> and
 			<strong>67'</strong> reference points. Momentum above the centre line favours
 			<span class="ink home">{match.home.name}</span>; below favours
-			<span class="ink away">{match.away.name}</span>. Source: {match.source}.
+			<span class="ink away">{match.away.name}</span>.
 		</p>
 	</main>
 </div>
+
+<footer class="attribution">
+	Match data via <a href="https://www.fotmob.com" target="_blank" rel="noopener">FotMob</a> ·
+	Schedule data via <a href="https://github.com/openfootball/world-cup" target="_blank" rel="noopener">openfootball/world-cup</a> ·
+	<a href="https://github.com/claudey/legendary-computing-machine" target="_blank" rel="noopener">Source on GitHub</a>
+</footer>
 
 <style>
 	.app {
@@ -289,14 +331,79 @@
 		font-weight: 600;
 	}
 
-	@media (max-width: 760px) {
+	.mob-share,
+	.mob-peak {
+		display: none;
+		padding: 14px 16px;
+		background: var(--surface);
+		border: 1px solid var(--border);
+		border-radius: var(--radius);
+	}
+
+	.attribution {
+		padding: 16px 26px;
+		font-size: 12px;
+		color: var(--text-faint);
+		border-top: 1px solid var(--border);
+		text-align: center;
+	}
+	.attribution a {
+		color: var(--text-dim);
+		text-decoration: none;
+	}
+	.attribution a:hover {
+		color: var(--text);
+		text-decoration: underline;
+	}
+
+	@media (max-width: 640px) {
 		.app {
 			grid-template-columns: 1fr;
-			grid-template-rows: auto 1fr;
 			height: auto;
+			max-width: 100vw;
+			overflow-x: hidden;
 		}
-		.stats {
-			grid-template-columns: 1fr;
+		.col-list {
+			min-width: 0;
+			max-width: 100%;
 		}
+		.col-detail {
+			padding: 14px;
+			min-width: 0;
+			max-width: 100%;
+			overflow-x: hidden;
+		}
+		.title {
+			grid-template-columns: 1fr auto 1fr;
+			gap: 6px;
+		}
+		.side {
+			font-size: 13px;
+			gap: 5px;
+			min-width: 0;
+		}
+		.side .name {
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+		.score {
+			font-size: 20px;
+			white-space: nowrap;
+		}
+		.dot {
+			width: 8px;
+			height: 8px;
+			flex-shrink: 0;
+		}
+		.sub {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 5px;
+		}
+		.league-chip { display: none; }
+		.stats { display: none; }
+		.mob-peak { display: block; }
+		.mob-share { display: block; }
 	}
 </style>
