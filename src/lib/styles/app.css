@@ -1,0 +1,107 @@
+/* ── IBM Plex Sans (self-hosted via @fontsource) ───────────────────── */
+@import '@fontsource/ibm-plex-sans/400.css';
+@import '@fontsource/ibm-plex-sans/500.css';
+@import '@fontsource/ibm-plex-sans/600.css';
+@import '@fontsource/ibm-plex-sans/700.css';
+@import '@fontsource/ibm-plex-mono/400.css';
+@import '@fontsource/ibm-plex-mono/500.css';
+
+/* ── Tiny design system ─────────────────────────────────────────────── */
+:root {
+	/* surfaces */
+	--bg: #0e1116;
+	--surface: #161b22;
+	--surface-2: #1c232d;
+	--surface-3: #232c38;
+	--border: #2a3340;
+	--border-strong: #3a4654;
+
+	/* text */
+	--text: #e7edf3;
+	--text-dim: #9aa7b4;
+	--text-faint: #647281;
+
+	/* accents */
+	--accent: #ffb000; /* hydration/heat amber */
+	--home: #38bdf8;
+	--away: #fb7185;
+	--goal: #facc15;
+	--line: #4b5563;
+
+	/* type */
+	--font-sans: 'IBM Plex Sans', system-ui, sans-serif;
+	--font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+	/* metrics */
+	--radius: 10px;
+	--radius-sm: 7px;
+	--space: 8px;
+	--shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	margin: 0;
+	height: 100%;
+}
+
+body {
+	background: var(--bg);
+	color: var(--text);
+	font-family: var(--font-sans);
+	font-size: 14px;
+	line-height: 1.45;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	margin: 0;
+	font-weight: 600;
+	letter-spacing: -0.01em;
+}
+
+.mono {
+	font-family: var(--font-mono);
+	font-variant-numeric: tabular-nums;
+}
+
+/* utility chips */
+.chip {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	padding: 2px 8px;
+	border-radius: 999px;
+	background: var(--surface-3);
+	color: var(--text-dim);
+	font-size: 11px;
+	font-weight: 500;
+	white-space: nowrap;
+}
+
+::selection {
+	background: var(--accent);
+	color: #1a1300;
+}
+
+/* thin scrollbars */
+* {
+	scrollbar-width: thin;
+	scrollbar-color: var(--border-strong) transparent;
+}
+*::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+	background: var(--border-strong);
+	border-radius: 8px;
+}
