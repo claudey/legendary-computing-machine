@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { width: 1200px; height: 630px; overflow: hidden; background: #0e1116; }
+  .root {
+    width: 1200px; height: 630px;
+    background: #0e1116;
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    display: grid;
+    grid-template-columns: 480px 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* subtle grid lines in bg */
+  .root::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+
+  .left {
+    padding: 60px 52px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+    border-right: 1px solid #2a3340;
+  }
+
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #ffb000;
+  }
+  .eyebrow-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #ffb000;
+  }
+
+  .heading {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+    padding: 32px 0;
+  }
+  .title-sm {
+    font-size: 18px;
+    font-weight: 600;
+    color: #9aa7b4;
+    letter-spacing: -0.01em;
+  }
+  .title-lg {
+    font-size: 56px;
+    font-weight: 700;
+    color: #e7edf3;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+  }
+  .title-lg em {
+    font-style: normal;
+    color: #4dd8e0;
+  }
+  .tagline {
+    font-size: 15px;
+    color: #647281;
+    line-height: 1.6;
+    max-width: 340px;
+  }
+
+  .badges {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: 'IBM Plex Mono', monospace;
+    width: fit-content;
+  }
+  .badge-water {
+    background: rgba(77,216,224,0.1);
+    color: #4dd8e0;
+    border: 1px solid rgba(77,216,224,0.25);
+  }
+  .badge-ht {
+    background: rgba(255,176,0,0.1);
+    color: #ffb000;
+    border: 1px solid rgba(255,176,0,0.25);
+  }
+  .badge-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: currentColor;
+  }
+
+  .right {
+    position: relative;
+    z-index: 1;
+    padding: 40px 48px 40px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .match-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #647281;
+  }
+
+  .teams {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .team {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #e7edf3;
+  }
+  .tdot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+  }
+  .score-txt {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 16px;
+    font-weight: 600;
+    color: #3a4654;
+  }
+
+  svg.chart { flex: 1; width: 100%; display: block; }
+</style>
+</head>
+<body>
+<div class="root">
+  <div class="left">
+    <div class="eyebrow">
+      <span class="eyebrow-dot"></span>
+      FIFA World Cup 2026
+    </div>
+
+    <div class="heading">
+      <span class="title-sm">Hydration &amp; Momentum</span>
+      <div class="title-lg">Do water<br>breaks bend<br>the <em>momentum</em>?</div>
+      <p class="tagline">Per-minute momentum charts for every group stage match — with hydration break markers.</p>
+    </div>
+
+    <div class="badges">
+      <div class="badge badge-water"><span class="badge-dot"></span> Water breaks at 22&apos; and 67&apos;</div>
+      <div class="badge badge-ht"><span class="badge-dot"></span> Half-time at 45&apos;</div>
+    </div>
+  </div>
+
+  <div class="right">
+    <div class="match-label">Canada · Bosnia and Herzegovina · Group B</div>
+
+    <div class="teams">
+      <div class="team"><div class="tdot" style="background:#d63a2f"></div> Canada</div>
+      <div class="score-txt">1 – 1</div>
+      <div class="team"><div class="tdot" style="background:#00AEEF"></div> Bosnia and Herzegovina</div>
+    </div>
+
+    <!-- Stylized momentum chart: CAN vs BIH, 1-1 -->
+    <svg class="chart" viewBox="0 0 680 400" preserveAspectRatio="none">
+      <defs>
+        <clipPath id="cp"><rect x="0" y="0" width="680" height="400"/></clipPath>
+      </defs>
+
+      <!-- background -->
+      <rect width="680" height="400" fill="#161b22" rx="10"/>
+
+      <!-- midline -->
+      <line x1="0" y1="200" x2="680" y2="200" stroke="#2a3340" stroke-width="1"/>
+
+      <!-- water break band 22' -->
+      <rect x="155" y="10" width="14" height="380" fill="#4dd8e0" opacity="0.1"/>
+      <!-- water break band 67' -->
+      <rect x="448" y="10" width="14" height="380" fill="#4dd8e0" opacity="0.1"/>
+      <!-- HT band -->
+      <rect x="300" y="10" width="3" height="380" fill="#ffb000" opacity="0.3"/>
+
+      <!-- momentum bars (simplified CAN vs BIH data) -->
+      <!-- positive = Canada (home, red), negative = Bosnia (away, blue) -->
+      <!-- x maps 0-90 min to 10-670px. barW ~6px -->
+      <!-- I'll define key segments as rectangles for visual appeal -->
+
+      <!-- Canada dominant first 20 mins -->
+      <g clip-path="url(#cp)">
+        <!-- minute by minute bars approximated -->
+        <!-- early Canada pressure -->
+        <rect x="12" y="152" width="5" height="48" rx="1" fill="#d63a2f" opacity="0.8"/>
+        <rect x="19" y="140" width="5" height="60" rx="1" fill="#d63a2f" opacity="0.8"/>
+        <rect x="26" y="158" width="5" height="42" rx="1" fill="#d63a2f" opacity="0.8"/>
+        <rect x="33" y="130" width="5" height="70" rx="1" fill="#d63a2f" opacity="0.8"/>
+        <rect x="40" y="120" width="5" height="80" rx="1" fill="#d63a2f" opacity="0.9"/>
+        <rect x="47" y="115" width="5" height="85" rx="1" fill="#d63a2f" opacity="0.9"/>
+        <rect x="54" y="125" width="5" height="75" rx="1" fill="#d63a2f" opacity="0.8"/>
+        <rect x="61" y="148" width="5" height="52" rx="1" fill="#d63a2f" opacity="0.7"/>
+        <rect x="68" y="140" width="5" height="60" rx="1" fill="#d63a2f" opacity="0.8"/>
+        <rect x="75" y="155" width="5" height="45" rx="1" fill="#d63a2f" opacity="0.7"/>
+
+        <!-- Bosnia pushes back 10-15' -->
+        <rect x="82" y="200" width="5" height="40" rx="1" fill="#00AEEF" opacity="0.7"/>
+        <rect x="89" y="200" width="5" height="55" rx="1" fill="#00AEEF" opacity="0.8"/>
+        <rect x="96" y="200" width="5" height="35" rx="1" fill="#00AEEF" opacity="0.7"/>
+        <rect x="103" y="200" width="5" height="25" rx="1" fill="#00AEEF" opacity="0.6"/>
+
+        <!-- Canada back 16-21' -->
+        <rect x="110" y="135" width="5" height="65" rx="1" fill="#d63a2f" opacity="0.85"/>
+        <rect x="117" y="128" width="5" height="72" rx="1" fill="#d63a2f" opacity="0.85"/>
+        <rect x="124" y="142" width="5" height="58" rx="1" fill="#d63a2f" opacity="0.8"/>
+        <rect x="131" y="138" width="5" height="62" rx="1" fill="#d63a2f" opacity="0.8"/>
+        <rect x="138" y="120" width="5" height="80" rx="1" fill="#d63a2f" opacity="0.9"/>
+        <rect x="145" y="115" width="5" height="85" rx="1" fill="#d63a2f" opacity="0.9"/>
+
+        <!-- water break 22' then Bosnia surge -->
+        <rect x="162" y="200" width="5" height="65" rx="1" fill="#00AEEF" opacity="0.8"/>
+        <rect x="169" y="200" width="5" height="80" rx="1" fill="#00AEEF" opacity="0.85"/>
+        <rect x="176" y="200" width="5" height="90" rx="1" fill="#00AEEF" opacity="0.85"/>
+        <rect x="183" y="200" width="5" height="100" rx="1" fill="#00AEEF" opacity="0.9"/>
+        <rect x="190" y="200" width="5" height="85" rx="1" fill="#00AEEF" opacity="0.85"/>
+        <rect x="197" y="200" width="5" height="70" rx="1" fill="#00AEEF" opacity="0.8"/>
+
+        <!-- mix 29-39' -->
+        <rect x="204" y="165" width="5" height="35" rx="1" fill="#d63a2f" opacity="0.7"/>
+        <rect x="211" y="200" width="5" height="40" rx="1" fill="#00AEEF" opacity="0.7"/>
+        <rect x="218" y="170" width="5" height="30" rx="1" fill="#d63a2f" opacity="0.65"/>
+        <rect x="225" y="200" width="5" height="45" rx="1" fill="#00AEEF" opacity="0.7"/>
+        <rect x="232" y="175" width="5" height="25" rx="1" fill="#d63a2f" opacity="0.6"/>
+        <rect x="239" y="200" width="5" height="30" rx="1" fill="#00AEEF" opacity="0.65"/>
+        <rect x="246" y="178" width="5" height="22" rx="1" fill="#d63a2f" opacity="0.6"/>
+        <rect x="253" y="200" width="5" height="55" rx="1" fill="#00AEEF" opacity="0.75"/>
+        <rect x="260" y="200" width="5" height="70" rx="1" fill="#00AEEF" opacity="0.8"/>
+        <rect x="267" y="200" width="5" height="80" rx="1" fill="#00AEEF" opacity="0.85"/>
+        <rect x="274" y="200" width="5" height="90" rx="1" fill="#00AEEF" opacity="0.88"/>
+        <!-- Canada goal peak near 44' -->
+        <rect x="281" y="80" width="5" height="120" rx="1" fill="#d63a2f" opacity="0.95"/>
+        <rect x="288" y="68" width="5" height="132" rx="1" fill="#d63a2f" opacity="1"/>
+
+        <!-- HT -->
+        <rect x="296" y="200" width="5" height="60" rx="1" fill="#00AEEF" opacity="0.75"/>
+        <rect x="303" y="200" width="5" height="85" rx="1" fill="#00AEEF" opacity="0.85"/>
+        <rect x="310" y="200" width="5" height="95" rx="1" fill="#00AEEF" opacity="0.88"/>
+        <rect x="317" y="200" width="5" height="100" rx="1" fill="#00AEEF" opacity="0.9"/>
+        <rect x="324" y="200" width="5" height="110" rx="1" fill="#00AEEF" opacity="0.92"/>
+
+        <!-- 51-60: Canada press back -->
+        <rect x="331" y="140" width="5" height="60" rx="1" fill="#d63a2f" opacity="0.8"/>
+        <rect x="338" y="128" width="5" height="72" rx="1" fill="#d63a2f" opacity="0.85"/>
+        <rect x="345" y="135" width="5" height="65" rx="1" fill="#d63a2f" opacity="0.82"/>
+        <rect x="352" y="150" width="5" height="50" rx="1" fill="#d63a2f" opacity="0.78"/>
+        <rect x="359" y="200" width="5" height="35" rx="1" fill="#00AEEF" opacity="0.65"/>
+        <rect x="366" y="200" width="5" height="55" rx="1" fill="#00AEEF" opacity="0.72"/>
+        <rect x="373" y="162" width="5" height="38" rx="1" fill="#d63a2f" opacity="0.72"/>
+        <rect x="380" y="200" width="5" height="48" rx="1" fill="#00AEEF" opacity="0.7"/>
+        <rect x="387" y="155" width="5" height="45" rx="1" fill="#d63a2f" opacity="0.75"/>
+        <rect x="394" y="200" width="5" height="60" rx="1" fill="#00AEEF" opacity="0.75"/>
+        <rect x="401" y="200" width="5" height="75" rx="1" fill="#00AEEF" opacity="0.8"/>
+        <rect x="408" y="200" width="5" height="85" rx="1" fill="#00AEEF" opacity="0.82"/>
+        <rect x="415" y="200" width="5" height="90" rx="1" fill="#00AEEF" opacity="0.85"/>
+        <rect x="422" y="200" width="5" height="80" rx="1" fill="#00AEEF" opacity="0.82"/>
+        <rect x="429" y="200" width="5" height="70" rx="1" fill="#00AEEF" opacity="0.78"/>
+        <rect x="436" y="200" width="5" height="60" rx="1" fill="#00AEEF" opacity="0.75"/>
+
+        <!-- water break 67' then Bosnia goal surge -->
+        <rect x="455" y="200" width="5" height="100" rx="1" fill="#00AEEF" opacity="0.9"/>
+        <rect x="462" y="200" width="5" height="115" rx="1" fill="#00AEEF" opacity="0.92"/>
+        <!-- Bosnia goal at 74' -->
+        <rect x="469" y="200" width="5" height="125" rx="1" fill="#00AEEF" opacity="0.95"/>
+        <rect x="476" y="200" width="5" height="132" rx="1" fill="#00AEEF" opacity="0.98"/>
+        <rect x="483" y="200" width="5" height="140" rx="1" fill="#00AEEF" opacity="1"/>
+        <rect x="490" y="200" width="5" height="130" rx="1" fill="#00AEEF" opacity="0.95"/>
+        <rect x="497" y="200" width="5" height="110" rx="1" fill="#00AEEF" opacity="0.88"/>
+        <rect x="504" y="200" width="5" height="90" rx="1" fill="#00AEEF" opacity="0.82"/>
+
+        <!-- late back and forth -->
+        <rect x="511" y="165" width="5" height="35" rx="1" fill="#d63a2f" opacity="0.7"/>
+        <rect x="518" y="200" width="5" height="40" rx="1" fill="#00AEEF" opacity="0.68"/>
+        <rect x="525" y="145" width="5" height="55" rx="1" fill="#d63a2f" opacity="0.75"/>
+        <rect x="532" y="200" width="5" height="65" rx="1" fill="#00AEEF" opacity="0.75"/>
+        <rect x="539" y="152" width="5" height="48" rx="1" fill="#d63a2f" opacity="0.72"/>
+        <rect x="546" y="200" width="5" height="55" rx="1" fill="#00AEEF" opacity="0.72"/>
+        <rect x="553" y="160" width="5" height="40" rx="1" fill="#d63a2f" opacity="0.7"/>
+        <rect x="560" y="170" width="5" height="30" rx="1" fill="#d63a2f" opacity="0.65"/>
+        <rect x="567" y="200" width="5" height="45" rx="1" fill="#00AEEF" opacity="0.7"/>
+        <rect x="574" y="155" width="5" height="45" rx="1" fill="#d63a2f" opacity="0.72"/>
+        <rect x="581" y="200" width="5" height="50" rx="1" fill="#00AEEF" opacity="0.7"/>
+        <rect x="588" y="162" width="5" height="38" rx="1" fill="#d63a2f" opacity="0.68"/>
+        <rect x="595" y="200" width="5" height="35" rx="1" fill="#00AEEF" opacity="0.65"/>
+        <rect x="602" y="170" width="5" height="30" rx="1" fill="#d63a2f" opacity="0.62"/>
+        <rect x="609" y="200" width="5" height="25" rx="1" fill="#00AEEF" opacity="0.6"/>
+        <rect x="616" y="175" width="5" height="25" rx="1" fill="#d63a2f" opacity="0.6"/>
+        <rect x="623" y="200" width="5" height="20" rx="1" fill="#00AEEF" opacity="0.55"/>
+        <rect x="630" y="182" width="5" height="18" rx="1" fill="#d63a2f" opacity="0.55"/>
+        <rect x="637" y="188" width="5" height="12" rx="1" fill="#d63a2f" opacity="0.5"/>
+        <rect x="644" y="195" width="5" height="8" rx="1" fill="#00AEEF" opacity="0.45"/>
+        <rect x="651" y="192" width="5" height="8" rx="1" fill="#d63a2f" opacity="0.45"/>
+        <rect x="658" y="197" width="5" height="5" rx="1" fill="#00AEEF" opacity="0.4"/>
+      </g>
+
+      <!-- Canada goal: top, ~44min → x=288 -->
+      <circle cx="288" cy="18" r="9" fill="#ffb000"/>
+      <text x="288" y="22" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" font-weight="700" fill="#1a1300">44</text>
+
+      <!-- Bosnia goal: bottom, ~74min → x=483 -->
+      <circle cx="483" cy="382" r="9" fill="#ffb000"/>
+      <text x="483" y="386" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" font-weight="700" fill="#1a1300">74</text>
+
+      <!-- water break lines 22' (x=155) -->
+      <line x1="162" y1="8" x2="162" y2="392" stroke="#4dd8e0" stroke-width="2" opacity="0.75"/>
+      <text x="162" y="396" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" font-weight="600" fill="#4dd8e0">22'</text>
+
+      <!-- water break lines 67' (x=448) -->
+      <line x1="455" y1="8" x2="455" y2="392" stroke="#4dd8e0" stroke-width="2" opacity="0.75"/>
+      <text x="455" y="396" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" font-weight="600" fill="#4dd8e0">67'</text>
+
+      <!-- HT line -->
+      <line x1="301" y1="8" x2="301" y2="392" stroke="#ffb000" stroke-width="1.5" stroke-dasharray="4 5" opacity="0.6"/>
+      <text x="301" y="396" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" font-weight="600" fill="#ffb000">HT</text>
+    </svg>
+  </div>
+</div>
+</body>
+</html>
