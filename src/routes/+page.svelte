@@ -148,6 +148,7 @@
 	Match data via <a href="https://www.fotmob.com" target="_blank" rel="noopener">FotMob</a> ·
 	Schedule data via <a href="https://github.com/openfootball/world-cup" target="_blank" rel="noopener">openfootball/world-cup</a> ·
 	<a href="https://github.com/claudey/legendary-computing-machine" target="_blank" rel="noopener">Source on GitHub</a>
+	<span class="byline">Built out of curiosity by <a href="https://ayitey.me" target="_blank" rel="noopener">Claude A.</a></span>
 </footer>
 
 <style>
@@ -354,6 +355,17 @@
 	.attribution a:hover {
 		color: var(--text);
 		text-decoration: underline;
+	}
+	.byline {
+		display: block;
+		margin-top: 6px;
+		color: var(--text-faint);
+	}
+	.byline a {
+		color: var(--accent);
+	}
+	.byline a:hover {
+		color: var(--text);
 	}
 
 	@media (max-width: 640px) {
