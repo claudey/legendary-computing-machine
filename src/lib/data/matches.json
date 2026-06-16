@@ -6378,5 +6378,58 @@
 			}
 		],
 		"momentum": []
+	},
+	{
+		"id": "1f8fvo",
+		"source": "FotMob",
+		"league": "FIFA World Cup",
+		"group": "Group I",
+		"date": "2026-06-16",
+		"kickoffUTC": "2026-06-16T19:00:00.000Z",
+		"home": {
+			"name": "France",
+			"color": "#003189"
+		},
+		"away": {
+			"name": "Senegal",
+			"color": "#00853f"
+		},
+		"score": [
+			3,
+			1
+		],
+		"weather": {
+			"temperature": 26,
+			"humidity": 60,
+			"description": "Sunny"
+		},
+		"breakMarks": [
+			22,
+			45,
+			67
+		],
+		"goals": [
+			{
+				"minute": 66,
+				"team": "home",
+				"player": "Kylian Mbappé"
+			},
+			{
+				"minute": 82,
+				"team": "home",
+				"player": "Bradley Barcola"
+			},
+			{
+				"minute": 95,
+				"team": "away",
+				"player": "Ibrahim Mbaye"
+			},
+			{
+				"minute": 96,
+				"team": "home",
+				"player": "Kylian Mbappé"
+			}
+		],
+		"momentum": []
 	}
 ]

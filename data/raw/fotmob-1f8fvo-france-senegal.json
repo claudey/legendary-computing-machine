@@ -1,0 +1,22 @@
+{
+	"source": "FotMob",
+	"matchId": "1f8fvo",
+	"league": "FIFA World Cup",
+	"group": "Group I",
+	"kickoffUTC": "2026-06-16T19:00:00.000Z",
+	"home": { "name": "France", "color": "#003189" },
+	"away": { "name": "Senegal", "color": "#00853f" },
+	"weather": {
+		"temperature": 26,
+		"relativeHumidity": 60,
+		"description": "Sunny"
+	},
+	"goals": [
+		{ "minute": 66, "team": "home", "player": "Kylian Mbappé" },
+		{ "minute": 82, "team": "home", "player": "Bradley Barcola" },
+		{ "minute": 95, "team": "away", "player": "Ibrahim Mbaye" },
+		{ "minute": 96, "team": "home", "player": "Kylian Mbappé" }
+	],
+	"momentumNote": "Momentum unavailable — fotmob.com blocked by environment egress policy. Capture manually: follow data/CAPTURE.md recipe, navigate to https://www.fotmob.com/matches/senegal-vs-france/1f8fvo and replace this empty array.",
+	"momentum": []
+}
