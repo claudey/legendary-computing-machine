@@ -1,0 +1,22 @@
+{
+	"source": "FotMob",
+	"matchId": "1ar30l",
+	"league": "FIFA World Cup",
+	"group": "Group G",
+	"kickoffUTC": "2026-06-16T01:00:00.000Z",
+	"home": { "name": "Iran", "color": "#239f40" },
+	"away": { "name": "New Zealand", "color": "#ffffff" },
+	"weather": {
+		"temperature": 21,
+		"relativeHumidity": 68,
+		"description": "Partly Cloudy"
+	},
+	"goals": [
+		{ "minute": 7, "team": "away", "player": "Elijah Just" },
+		{ "minute": 32, "team": "home", "player": "Ramin Rezaeian" },
+		{ "minute": 54, "team": "away", "player": "Elijah Just" },
+		{ "minute": 64, "team": "home", "player": "Mohammad Mohebbi" }
+	],
+	"momentumNote": "Momentum unavailable — fotmob.com blocked by environment egress policy. Capture manually: follow data/CAPTURE.md recipe, navigate to https://www.fotmob.com/matches/new-zealand-vs-iran/1ar30l and replace this empty array.",
+	"momentum": []
+}

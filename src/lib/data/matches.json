@@ -6325,5 +6325,58 @@
 				0
 			]
 		]
+	},
+	{
+		"id": "1ar30l",
+		"source": "FotMob",
+		"league": "FIFA World Cup",
+		"group": "Group G",
+		"date": "2026-06-16",
+		"kickoffUTC": "2026-06-16T01:00:00.000Z",
+		"home": {
+			"name": "Iran",
+			"color": "#239f40"
+		},
+		"away": {
+			"name": "New Zealand",
+			"color": "#ffffff"
+		},
+		"score": [
+			2,
+			2
+		],
+		"weather": {
+			"temperature": 21,
+			"humidity": 68,
+			"description": "Partly Cloudy"
+		},
+		"breakMarks": [
+			22,
+			45,
+			67
+		],
+		"goals": [
+			{
+				"minute": 7,
+				"team": "away",
+				"player": "Elijah Just"
+			},
+			{
+				"minute": 32,
+				"team": "home",
+				"player": "Ramin Rezaeian"
+			},
+			{
+				"minute": 54,
+				"team": "away",
+				"player": "Elijah Just"
+			},
+			{
+				"minute": 64,
+				"team": "home",
+				"player": "Mohammad Mohebbi"
+			}
+		],
+		"momentum": []
 	}
 ]
