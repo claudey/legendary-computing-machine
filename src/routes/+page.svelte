@@ -74,8 +74,7 @@
 				<span class="chip league-chip">{match.league}</span>
 				<!-- <span class="chip">{fmtFull(match.kickoffUTC)}</span> -->
 				<span class="chip" class:warm={(match.weather.temperature ?? 0) >= 28}>
-					🌡 {match.weather.temperature}°C · {match.weather.humidity}% RH · {match.weather
-						.description}
+					🌡 {match.weather.temperature}°C{match.weather.humidity != null ? ` · ${match.weather.humidity}% RH` : ''} · {match.weather.description}
 				</span>
 			</div>
 		</header>

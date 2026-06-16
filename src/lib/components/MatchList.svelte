@@ -21,7 +21,8 @@
 		'Germany': 'GER', 'Curaçao': 'CUR', 'Ivory Coast': 'CIV', 'Ecuador': 'ECU',
 		'Netherlands': 'NED', 'Japan': 'JPN', 'Sweden': 'SWE', 'Tunisia': 'TUN',
 		'Belgium': 'BEL', 'Egypt': 'EGY', 'Spain': 'ESP', 'Cape Verde': 'CPV',
-		'Saudi Arabia': 'KSA', 'Uruguay': 'URU'
+		'Saudi Arabia': 'KSA', 'Uruguay': 'URU',
+		'Iran': 'IRN', 'New Zealand': 'NZL', 'France': 'FRA', 'Senegal': 'SEN'
 	};
 
 	const code = (name: string) => CODES[name] ?? name.slice(0, 3).toUpperCase();
