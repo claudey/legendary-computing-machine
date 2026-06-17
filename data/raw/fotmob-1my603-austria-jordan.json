@@ -1,0 +1,22 @@
+{
+	"source": "FotMob",
+	"matchId": "1my603",
+	"league": "FIFA World Cup",
+	"group": "Group J",
+	"kickoffUTC": "2026-06-17T04:00:00.000Z",
+	"home": { "name": "Austria", "color": "#ed2939" },
+	"away": { "name": "Jordan", "color": "#007a3d" },
+	"weather": {
+		"temperature": 20,
+		"relativeHumidity": 67,
+		"description": "Clear"
+	},
+	"goals": [
+		{ "minute": 21, "team": "home", "player": "Romano Schmid" },
+		{ "minute": 50, "team": "away", "player": "Ali Olwan" },
+		{ "minute": 76, "team": "home", "player": "Yazan Al-Arab (OG)" },
+		{ "minute": 102, "team": "home", "player": "Marko Arnautovic" }
+	],
+	"momentumNote": "Momentum unavailable — fotmob.com blocked by environment egress policy. Capture manually: follow data/CAPTURE.md recipe, navigate to https://www.fotmob.com/matches/jordan-vs-austria/1my603 and replace this empty array.",
+	"momentum": []
+}

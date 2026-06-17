@@ -1,0 +1,21 @@
+{
+	"source": "FotMob",
+	"matchId": "1ehtqa",
+	"league": "FIFA World Cup",
+	"group": "Group J",
+	"kickoffUTC": "2026-06-17T01:00:00.000Z",
+	"home": { "name": "Argentina", "color": "#74acdf" },
+	"away": { "name": "Algeria", "color": "#006233" },
+	"weather": {
+		"temperature": 28,
+		"relativeHumidity": 55,
+		"description": "Clear"
+	},
+	"goals": [
+		{ "minute": 17, "team": "home", "player": "Lionel Messi" },
+		{ "minute": 60, "team": "home", "player": "Lionel Messi" },
+		{ "minute": 76, "team": "home", "player": "Lionel Messi" }
+	],
+	"momentumNote": "Momentum unavailable — fotmob.com blocked by environment egress policy. Capture manually: follow data/CAPTURE.md recipe, navigate to https://www.fotmob.com/matches/algeria-vs-argentina/1ehtqa and replace this empty array.",
+	"momentum": []
+}

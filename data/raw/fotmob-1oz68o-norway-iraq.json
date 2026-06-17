@@ -1,0 +1,23 @@
+{
+	"source": "FotMob",
+	"matchId": "1oz68o",
+	"league": "FIFA World Cup",
+	"group": "Group I",
+	"kickoffUTC": "2026-06-16T22:00:00.000Z",
+	"home": { "name": "Norway", "color": "#ef2b2d" },
+	"away": { "name": "Iraq", "color": "#006b3f" },
+	"weather": {
+		"temperature": 24,
+		"relativeHumidity": 58,
+		"description": "Partly Cloudy"
+	},
+	"goals": [
+		{ "minute": 29, "team": "home", "player": "Erling Haaland" },
+		{ "minute": 39, "team": "away", "player": "Aymen Hussein" },
+		{ "minute": 43, "team": "home", "player": "Erling Haaland" },
+		{ "minute": 76, "team": "home", "player": "Leo Østigard" },
+		{ "minute": 96, "team": "home", "player": "Aymen Hussein (OG)" }
+	],
+	"momentumNote": "Momentum unavailable — fotmob.com blocked by environment egress policy. Capture manually: follow data/CAPTURE.md recipe, navigate to https://www.fotmob.com/matches/iraq-vs-norway/1oz68o and replace this empty array.",
+	"momentum": []
+}
