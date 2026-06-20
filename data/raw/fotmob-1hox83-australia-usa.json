@@ -1,0 +1,20 @@
+{
+	"source": "FotMob",
+	"matchId": "1hox83",
+	"league": "FIFA World Cup",
+	"group": "Group D",
+	"kickoffUTC": "2026-06-19T19:00:00.000Z",
+	"home": { "name": "Australia", "color": "#FFB81C" },
+	"away": { "name": "USA", "color": "#ffffff" },
+	"weather": {
+		"temperature": 18,
+		"relativeHumidity": 72,
+		"description": "Cloudy"
+	},
+	"goals": [
+		{ "minute": 11, "team": "away", "player": "Cameron Burgess (OG)" },
+		{ "minute": 43, "team": "away", "player": "Alex Freeman" }
+	],
+	"momentumNote": "FotMob momentum unavailable — egress policy blocks fotmob.com. Capture manually at https://www.fotmob.com/matches/usa-vs-australia/1hox83",
+	"momentum": []
+}

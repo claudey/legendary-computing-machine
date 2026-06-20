@@ -1,0 +1,19 @@
+{
+	"source": "FotMob",
+	"matchId": "1gte1s",
+	"league": "FIFA World Cup",
+	"group": "Group D",
+	"kickoffUTC": "2026-06-20T03:00:00.000Z",
+	"home": { "name": "Paraguay", "color": "#EE3F2D" },
+	"away": { "name": "Turkiye", "color": "#d71c00" },
+	"weather": {
+		"temperature": 15,
+		"relativeHumidity": 76,
+		"description": "Partly Cloudy"
+	},
+	"goals": [
+		{ "minute": 2, "team": "home", "player": "Matías Galarza" }
+	],
+	"momentumNote": "FotMob momentum unavailable — egress policy blocks fotmob.com. Capture manually at https://www.fotmob.com/matches/turkiye-vs-paraguay/1gte1s",
+	"momentum": []
+}

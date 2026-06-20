@@ -11890,5 +11890,172 @@
 				0
 			]
 		]
+	},
+	{
+		"id": "1hox83",
+		"source": "FotMob",
+		"league": "FIFA World Cup",
+		"group": "Group D",
+		"date": "2026-06-19",
+		"kickoffUTC": "2026-06-19T19:00:00.000Z",
+		"home": {
+			"name": "Australia",
+			"color": "#FFB81C"
+		},
+		"away": {
+			"name": "USA",
+			"color": "#ffffff"
+		},
+		"score": [
+			0,
+			2
+		],
+		"weather": {
+			"temperature": 18,
+			"humidity": 72,
+			"description": "Cloudy"
+		},
+		"breakMarks": [
+			22,
+			45,
+			67
+		],
+		"goals": [
+			{
+				"minute": 11,
+				"team": "away",
+				"player": "Cameron Burgess (OG)"
+			},
+			{
+				"minute": 43,
+				"team": "away",
+				"player": "Alex Freeman"
+			}
+		],
+		"momentum": []
+	},
+	{
+		"id": "1sv292",
+		"source": "FotMob",
+		"league": "FIFA World Cup",
+		"group": "Group C",
+		"date": "2026-06-19",
+		"kickoffUTC": "2026-06-19T22:00:00.000Z",
+		"home": {
+			"name": "Scotland",
+			"color": "#ffffff"
+		},
+		"away": {
+			"name": "Morocco",
+			"color": "#E6251E"
+		},
+		"score": [
+			0,
+			1
+		],
+		"weather": {
+			"temperature": 22,
+			"humidity": 65,
+			"description": "Partly Cloudy"
+		},
+		"breakMarks": [
+			22,
+			45,
+			67
+		],
+		"goals": [
+			{
+				"minute": 2,
+				"team": "away",
+				"player": "Ismael Saibari"
+			}
+		],
+		"momentum": []
+	},
+	{
+		"id": "1ny7ix",
+		"source": "FotMob",
+		"league": "FIFA World Cup",
+		"group": "Group C",
+		"date": "2026-06-20",
+		"kickoffUTC": "2026-06-20T01:00:00.000Z",
+		"home": {
+			"name": "Brazil",
+			"color": "#FFEA00"
+		},
+		"away": {
+			"name": "Haiti",
+			"color": "#4273C2"
+		},
+		"score": [
+			3,
+			0
+		],
+		"weather": {
+			"temperature": 26,
+			"humidity": 66,
+			"description": "Clear"
+		},
+		"breakMarks": [
+			22,
+			45,
+			67
+		],
+		"goals": [
+			{
+				"minute": 23,
+				"team": "home",
+				"player": "Matheus Cunha"
+			},
+			{
+				"minute": 36,
+				"team": "home",
+				"player": "Matheus Cunha"
+			},
+			{
+				"minute": 48,
+				"team": "home",
+				"player": "Vinícius Júnior"
+			}
+		],
+		"momentum": []
+	},
+	{
+		"id": "1gte1s",
+		"source": "FotMob",
+		"league": "FIFA World Cup",
+		"group": "Group D",
+		"date": "2026-06-20",
+		"kickoffUTC": "2026-06-20T03:00:00.000Z",
+		"home": {
+			"name": "Paraguay",
+			"color": "#EE3F2D"
+		},
+		"away": {
+			"name": "Turkiye",
+			"color": "#d71c00"
+		},
+		"score": [
+			1,
+			0
+		],
+		"weather": {
+			"temperature": 15,
+			"humidity": 76,
+			"description": "Partly Cloudy"
+		},
+		"breakMarks": [
+			22,
+			45,
+			67
+		],
+		"goals": [
+			{
+				"minute": 2,
+				"team": "home",
+				"player": "Matías Galarza"
+			}
+		],
+		"momentum": []
 	}
 ]

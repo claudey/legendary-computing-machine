@@ -1,0 +1,19 @@
+{
+	"source": "FotMob",
+	"matchId": "1sv292",
+	"league": "FIFA World Cup",
+	"group": "Group C",
+	"kickoffUTC": "2026-06-19T22:00:00.000Z",
+	"home": { "name": "Scotland", "color": "#ffffff" },
+	"away": { "name": "Morocco", "color": "#E6251E" },
+	"weather": {
+		"temperature": 22,
+		"relativeHumidity": 65,
+		"description": "Partly Cloudy"
+	},
+	"goals": [
+		{ "minute": 2, "team": "away", "player": "Ismael Saibari" }
+	],
+	"momentumNote": "FotMob momentum unavailable — egress policy blocks fotmob.com. Capture manually at https://www.fotmob.com/matches/morocco-vs-scotland/1sv292",
+	"momentum": []
+}

@@ -1,0 +1,21 @@
+{
+	"source": "FotMob",
+	"matchId": "1ny7ix",
+	"league": "FIFA World Cup",
+	"group": "Group C",
+	"kickoffUTC": "2026-06-20T01:00:00.000Z",
+	"home": { "name": "Brazil", "color": "#FFEA00" },
+	"away": { "name": "Haiti", "color": "#4273C2" },
+	"weather": {
+		"temperature": 26,
+		"relativeHumidity": 66,
+		"description": "Clear"
+	},
+	"goals": [
+		{ "minute": 23, "team": "home", "player": "Matheus Cunha" },
+		{ "minute": 36, "team": "home", "player": "Matheus Cunha" },
+		{ "minute": 48, "team": "home", "player": "Vinícius Júnior" }
+	],
+	"momentumNote": "FotMob momentum unavailable — egress policy blocks fotmob.com. Capture manually at https://www.fotmob.com/matches/haiti-vs-brazil/1ny7ix",
+	"momentum": []
+}
